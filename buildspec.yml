@@ -9,9 +9,14 @@ phases:
         sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
         sudo yum install -y apache-maven
   pre_build:
+    on-failure: ABORT
     commands:
       - java -version
       - mvn --version
   build:
     commands:
       - mvn clean package
+      - aws s3 cp target/helloworld.war s3://demo-appplication-artifact-bucket/artifacts/
+artifacts:
+  files:
+    - target/helloworld.war
