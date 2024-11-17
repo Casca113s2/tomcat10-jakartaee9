@@ -16,6 +16,8 @@ phases:
   build:
     commands:
       - mvn clean package
+  post_build:
+    commands:
       - aws s3 cp target/helloworld.war s3://demo-appplication-artifact-bucket/artifacts/
 artifacts:
   files:
