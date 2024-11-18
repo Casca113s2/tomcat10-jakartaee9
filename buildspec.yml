@@ -24,8 +24,8 @@ phases:
       - timestamp=$(date '+%Y%m%d_%H%M%S')
       - mv target/helloworld.war target/helloworld_$timestamp.war
       - aws s3 cp target/helloworld_$timestamp.war s3://demo-appplication-artifact-bucket/artifacts/
-      - aws ssm put-parameter --name "/application/dev/helloworld" --type "String" --value "helloworld_$timestamp.war" --overwrite
-      - ssm_commit_id=$(aws ssm get-parameter --name "/application/dev/latestcommitid")
+      - aws ssm put-parameter --name "/application/test/helloworld" --type "String" --value "helloworld_$timestamp.war" --overwrite
+      - ssm_commit_id=$(aws ssm get-parameter --name "/application/test/latestcommitid")
       - commit_id=$(echo $ssm_commit_id | jq -r '.Parameter.Value')
       - |
         aws codepipeline start-pipeline-execution --name InfrastructurePipeline --source-revisions "{\"actionName\": \"Source\", \"revisionType\": \"COMMIT_ID\", \"revisionValue\": \"${commit_id}\"}"

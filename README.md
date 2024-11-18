@@ -1,6 +1,6 @@
 # Tomcat 10 Sample Application
 
-Version 1.0
+Test document version 2.0
 
 Tomcat 10.0.x is the first Tomcat release to make the jump from Java EE to Jakarta EE. This means that applications running on previous versions of Tomcat will almost certainly require changes to run on Tomcat 10.0.x. This sample application directly targets Jakarta EE 9: the [pom file](pom.xml) has been updated to use `jakarta.jakartaee-web-api`, whereas an older version of this application would have used `javax.servlet-api`. If you browse the source code, you can see that import statements that would have used `javax` in the past are now using `jakarta`.
 
